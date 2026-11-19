@@ -1,0 +1,113 @@
+:root {
+  --bg: #0e0b1e;
+  --bg2: #171231;
+  --card: #1d1740;
+  --card2: #241c4e;
+  --line: #3a2f6e;
+  --text: #f2eefc;
+  --muted: #b9b0dd;
+  --pink: #ff2e88;
+  --cyan: #2fd8e8;
+  --gold: #f5c542;
+  --silver: #c9d2de;
+  --bronze: #d08a4e;
+  --plat: #7fe7d2;
+  --good: #57d977;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #140e2e 0%, var(--bg) 220px);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.5;
+}
+.top {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  justify-content: space-between; align-items: flex-end;
+  padding: 28px 28px 18px;
+  border-bottom: 3px solid var(--pink);
+}
+.kicker { margin: 0 0 4px; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--cyan); }
+h1 { margin: 0; font-size: 44px; line-height: 1.05; letter-spacing: -.01em; }
+h1::after { content: ""; display: block; width: 120px; height: 5px; margin-top: 8px; background: linear-gradient(90deg, var(--pink), var(--cyan)); border-radius: 3px; }
+.sub { margin: 10px 0 0; max-width: 560px; color: var(--muted); font-size: 15px; }
+.progress { min-width: 300px; max-width: 420px; flex: 1; }
+.counts { font-size: 15px; font-weight: 700; }
+.counts .sep { color: var(--muted); font-weight: 400; margin: 0 2px; }
+.bar { height: 12px; background: #2a2352; border-radius: 6px; margin: 8px 0; overflow: hidden; }
+#bar-fill { height: 100%; background: linear-gradient(90deg, var(--pink), var(--cyan)); border-radius: 6px; transition: width .3s; }
+.next { margin: 0; font-size: 13px; color: var(--muted); }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 14px 28px 0; }
+.tabs button {
+  background: var(--bg2); color: var(--text); border: 1px solid var(--line);
+  border-radius: 8px 8px 0 0; padding: 10px 16px; font-size: 15px; cursor: pointer;
+}
+.tabs button.active { background: var(--card); border-bottom-color: var(--card); color: #fff; box-shadow: inset 0 3px 0 var(--pink); }
+.pill { background: var(--pink); color: #fff; border-radius: 10px; font-size: 11px; padding: 2px 8px; margin-left: 4px; }
+main { padding: 18px 28px 28px; max-width: 1240px; }
+.tab { display: none; }
+.tab.active { display: block; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.controls label { font-size: 13px; color: var(--muted); }
+.controls input[type="search"], .controls select {
+  background: #0e0b1e; color: var(--text); border: 1px solid var(--line);
+  border-radius: 6px; padding: 7px 9px; font-size: 14px;
+}
+.controls input[type="search"] { width: 240px; }
+.controls button, .import {
+  background: var(--pink); color: #fff; border: 0; border-radius: 6px;
+  padding: 8px 14px; font-size: 14px; cursor: pointer;
+}
+.controls button.quiet { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.import input { display: none; }
+.check { display: flex; align-items: center; gap: 6px; }
+.hint { color: var(--muted); font-size: 13px; margin: 12px 2px 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; margin-top: 12px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px; position: relative;
+}
+.card.earned { border-color: var(--good); background: #1a2b22; }
+.card.earned::after { content: "EARNED ✓"; position: absolute; top: 12px; right: 14px; color: var(--good); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.card h3 { margin: 26px 0 4px; font-size: 18px; line-height: 1.25; }
+.card.earned h3 { margin-top: 26px; }
+.card .official { color: var(--muted); font-style: italic; margin: 0 0 8px; font-size: 14px; }
+.card .guide { margin: 0 0 10px; font-size: 14px; }
+.card .src { margin: 0; font-size: 12px; color: var(--cyan); }
+.badge { display: inline-block; border-radius: 5px; padding: 2px 9px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #14101f; }
+.badge.platinum { background: var(--plat); }
+.badge.gold { background: var(--gold); }
+.badge.silver { background: var(--silver); }
+.badge.bronze { background: var(--bronze); color: #fff; }
+.tag { display: inline-block; font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 10px; padding: 2px 8px; margin-left: 6px; }
+.flag { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: #c22727; border-radius: 10px; padding: 2px 8px; margin-left: 6px; }
+.earn { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 14px; cursor: pointer; }
+.earn input { width: 18px; height: 18px; accent-color: var(--good); cursor: pointer; }
+.hidden-card { background: var(--bg2); border-style: dashed; text-align: center; padding: 34px 16px; }
+.hidden-card p { color: var(--muted); margin: 6px 0; }
+.hidden-card .lock { font-size: 30px; }
+h2 { font-size: 26px; margin: 6px 0 8px; }
+.lede { color: var(--muted); max-width: 820px; }
+.roadmap { list-style: none; padding: 0; counter-reset: phase; max-width: 860px; }
+.roadmap li { counter-increment: phase; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px 14px 64px; margin-bottom: 12px; position: relative; }
+.roadmap li::before {
+  content: counter(phase); position: absolute; left: 16px; top: 14px;
+  width: 34px; height: 34px; border-radius: 50%; background: var(--pink); color: #fff;
+  font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center;
+}
+.roadmap h3 { margin: 0 0 6px; font-size: 18px; }
+.roadmap p { margin: 0; font-size: 14px; color: #e6e0f7; }
+.note { font-size: 13px; color: var(--muted); max-width: 860px; }
+.missable-card { background: #3a1520; border: 1px solid #c22727; border-radius: 12px; padding: 16px 18px; max-width: 860px; }
+.missable-card h3 { margin: 0 0 8px; }
+.missable-card p { margin: 0; }
+#tab-missables ul, #tab-sources ul { max-width: 860px; }
+#tab-missables li, .sources li { margin-bottom: 10px; font-size: 14px; }
+.url { color: var(--cyan); font-size: 13px; }
+footer { border-top: 1px solid var(--line); padding: 16px 28px 28px; color: var(--muted); font-size: 12px; max-width: 1240px; }
+@media (max-width: 700px) {
+  h1 { font-size: 32px; }
+  .top, main, .tabs { padding-left: 14px; padding-right: 14px; }
+  .controls input[type="search"] { width: 100%; }
+}
