@@ -1,55 +1,53 @@
 # Leonida Platinum — GTA VI Trophy Guide & Tracker
 
 An offline web app that guides and tracks all 55 PlayStation 5 trophies of
-**Grand Theft Auto VI**, built for make.fun's `gta6-trophy-guide-01` bounty
-("Build the best GTA 6 trophy guide", $250).
-
-## What it is
-
-- **Tracker** — every trophy with its official name, description and grade; a
-  checklist saved in the browser (localStorage) with export and import;
-  filters by grade, kind (story, stranger missions, collectibles, activities,
-  robberies, money, platinum & 100%, other moments, missable only), text
-  search, and earned/remaining; a spoiler setting that hides the 28 hidden
-  story trophies until they are earned.
-- **Roadmap to the platinum** — six phases in an order that wastes the least
-  effort, from the story through stranger strands, activities, collectibles,
-  robberies and money, to 100% completion.
-- **Missables** — the one trophy flagged as possibly missable (Positive
-  Mental Attitude), why, and what to do about it; plus the no-mission-replay
-  and cheat warnings.
-- **Sources** — every guide is written in our own words and names its
-  sources. Trophy names, descriptions and grades are the official ones as
-  shown on PlayStation Network (verified 2026-11-19 against Exophase /
-  PSNProfiles via PlanetGTA6 and against Push Square's full list). Counts and
-  menu paths come from Push Square's trophy guide; the platinum time estimate
-  and the missable and cheat notes from PowerPyx (as reported by GTA Zone)
-  and Output Lag. Where no published guide had confirmed a trigger yet, the
-  card says so instead of inventing one.
-- **Offline** — plain static files, no network requests at all. No Rockstar
-  logo or official artwork anywhere; the look is our own.
+Grand Theft Auto VI: every trophy with its official name, description and grade,
+a guide written in our own words with its sources named, a roadmap to the
+platinum in six phases, missable flags, and a checklist that saves in the
+browser. It runs from its own files and makes no network requests.
 
 ## Run it
 
 ```sh
-node serve.ts          # serves app/ on http://localhost:8080
+node serve.ts
+# open http://localhost:8080
 ```
 
-Or open `app/index.html` directly from the files (served over HTTP is the
-tested path). Hand it in with `MAKEFUN_OUTPUT_DIR=out node main.ts`.
+## Files
 
-## Layout
+- `app/index.html` — the page: header with progress, tabs, filters, checklist.
+- `app/app.js` — the tracker: localStorage checklist, export/import, search,
+  grade and kind filters, a spoiler setting that hides story trophies until
+  they are earned, and the roadmap, missables and sources tabs.
+- `app/style.css` — the look: dark, pink and cyan, our own design.
+- `app/data/trophies.json` — the 55 trophies: official names, descriptions and
+  grades (1 platinum, 2 gold, 6 silver, 46 bronze; 28 hidden), each with a
+  guide in our own words and its sources named.
+- `screenshots/` — 4 screenshots of the app running (1280×800), taken by
+  the maker; see `shots.json` for which view each one shows.
+- `main.ts` — hands the guide in: copies `app/` and `screenshots/` to
+  `/output` and writes `/output/dossier.json` with the vendored make.fun
+  library (`vendor/makefun-frontend.ts`, copied unchanged from the kit).
+- `serve.ts` — a tiny static server for trying the app locally.
 
-- `app/index.html`, `app/app.js`, `app/style.css` — the app
-- `app/data/trophies.json` — the official 55 trophies plus our own guides,
-  kinds, hidden flags and the single missable flag
-- `screenshots/` — 4 real renders of the app (tracker, missable guide,
-  roadmap, missables), 1280×800
-- `main.ts` — copies `app/` and `screenshots/` to `/output` and writes
-  `dossier.json` with the vendored make.fun library
-- `vendor/makefun-frontend.ts` — the kit's library, byte for byte
-- `shots.json` — what each screenshot shows
+## How the list was verified
 
-## License
+Names, descriptions and grades are as PlayStation publishes them, taken from
+Exophase and PSNProfiles and cross-checked against PlanetGTA6, Push Square
+and TrueAchievements on 19 November 2026. Two sources disagree on one grade:
+Maximum Withdrawal is Silver on Exophase and PSNProfiles and Bronze on Push
+Square — this guide follows Exophase and PSNProfiles and says so on the
+trophy. Seven trophies had no confirmed trigger in any published guide by
+19 November 2026 (Personal Best, Actions Speak Louder, Challenging Tank,
+In The Beginning…, Capital Offense, Bad Luck, I Guess, The Truth Is Out There,
+Ten Pin); their cards say so plainly instead of guessing. One trophy is
+flagged as possibly missable (Positive Mental Attitude, per PowerPyx; Push
+Square lists none known) and the disagreement is stated on the card.
 
-MIT — see `LICENSE`.
+## Build the dossier
+
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+```
+
+Then check it with the kit's `makefun check` before entering.
